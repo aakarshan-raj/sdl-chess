@@ -3,6 +3,7 @@
 #include <iostream>
 #define WIDTH 900
 #define HEIGHT 900
+#define BOX 112.5f
 
 int main(){
 
@@ -12,9 +13,12 @@ SDL_Event e;
 SDL_Renderer* grender;
 
 
-SDL_Rect box_rec[64];
-SDL_Rect r = {0,0,112,112};
-
+SDL_FRect box_rec[8][8];
+for(int i=0;i<8;i++){
+  for(int j=0;j<8;j++){
+    box_rec[i][j] = {BOX*j,BOX*i,BOX,BOX};
+  }  
+}
 
 if(SDL_Init(SDL_INIT_EVERYTHING)<0){
   std::cout<<"SDL Initialisation error"<<std::endl;
@@ -34,7 +38,11 @@ while(!quit){
     SDL_SetRenderDrawColor(grender,0xff,0xff,0xff,0xff);
     SDL_RenderClear(grender);
     SDL_SetRenderDrawColor(grender,0xff,0xc0,0xee,0xff);
-    SDL_RenderFillRect(grender,&r);
+    for(int i=0;i<8;i++){
+  for(int j=0;j<8;j++){
+        SDL_RenderFillRectF(grender,&box_rec[i][j]);
+  }  
+}
     SDL_RenderPresent(grender);    
 }
 
