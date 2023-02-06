@@ -1,13 +1,13 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
-//window size will be fixed
-#define WIDTH 800
-#define HEIGHT 1200
+#define WIDTH 1200
+#define HEIGHT 900
 
 int main(){
 
 SDL_Window* window;
+SDL_Surface* gsurface;
 SDL_Event e;
 
 if(SDL_Init(SDL_INIT_EVERYTHING)<0){
@@ -15,7 +15,7 @@ if(SDL_Init(SDL_INIT_EVERYTHING)<0){
 }
 
 else{
-window = SDL_CreateWindow("Chess",0,0,800,500,SDL_WINDOW_SHOWN);
+window = SDL_CreateWindow("Chess",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIDTH,HEIGHT,SDL_WINDOW_SHOWN);
 bool quit = false;
 while(!quit){
     while(SDL_PollEvent(&e) == 1){
@@ -23,6 +23,7 @@ while(!quit){
             quit = true;
         }
     }
+  
     SDL_UpdateWindowSurface(window);
     
 }
