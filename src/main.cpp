@@ -37,9 +37,15 @@ while(!quit){
     }
     SDL_SetRenderDrawColor(grender,0xff,0xff,0xff,0xff);
     SDL_RenderClear(grender);
-    SDL_SetRenderDrawColor(grender,0xff,0xc0,0xee,0xff);
     for(int i=0;i<8;i++){
   for(int j=0;j<8;j++){
+        if((i+j)&1){
+            SDL_SetRenderDrawColor(grender,0x00,0x00,0x00,0xff);
+        }
+        else{
+            SDL_SetRenderDrawColor(grender,0xff,0xff,0xff,0xff);
+
+        }
         SDL_RenderFillRectF(grender,&box_rec[i][j]);
   }  
 }
